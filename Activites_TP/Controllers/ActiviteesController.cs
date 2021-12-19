@@ -53,7 +53,7 @@ namespace Activites_TP.Controllers
             }
             conn.Close();
             return View(listeActivites);
-           
+
         }
 
         // GET: ActiviteesController/Details/5
@@ -117,8 +117,9 @@ namespace Activites_TP.Controllers
                 cmd.Parameters.Add(new SqlParameter("@Nom_activite", B.Nom_activite));
                 cmd.Parameters.Add(new SqlParameter("@Duree", B.Duree));
                 cmd.Parameters.Add(new SqlParameter("@Cout", B.Cout));
-                cmd.Parameters.Add(new SqlParameter("@Nombre_vote", B.Nombre_vote));
-                
+                //cmd.Parameters.Add(new SqlParameter("@Nombre_vote", B.Nombre_vote));
+                cmd.Connection = conn;
+
                 conn.Open();
                 int rowCount = cmd.ExecuteNonQuery();
                 conn.Close();
@@ -133,96 +134,96 @@ namespace Activites_TP.Controllers
 
         }
 
-        // GET: ActiviteesController/Edit/5
-        public ActionResult Edit(int Id)
-        {
-            SqlConnection conn;
-            SqlCommand cmd;
-            SqlDataReader reader;
-            Activite B = new Activite();
-            //Activite B = null;
+        //// GET: ActiviteesController/Edit/5
+        //public ActionResult Edit(int Id)
+        //{
+        //    SqlConnection conn;
+        //    SqlCommand cmd;
+        //    SqlDataReader reader;
+        //    Activite B = new Activite();
+        //    //Activite B = null;
 
-            connectionString = configuration.GetConnectionString("defaultConnection");
-            conn = new SqlConnection(connectionString);
-            cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "EditGetActivite";
-            cmd.Parameters.Add(new SqlParameter("@Id", Id));
-            cmd.Connection = conn;
+        //    connectionString = configuration.GetConnectionString("defaultConnection");
+        //    conn = new SqlConnection(connectionString);
+        //    cmd = new SqlCommand();
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.CommandText = "EditGetActivite";
+        //    cmd.Parameters.Add(new SqlParameter("@Id", Id));
+        //    cmd.Connection = conn;
 
-            conn.Open();
-            reader = cmd.ExecuteReader();
+        //    conn.Open();
+        //    reader = cmd.ExecuteReader();
 
-            while (reader.Read())
-            {
+        //    while (reader.Read())
+        //    {
 
-                B.Id_activite = reader.GetInt32("Id_activite");
-                B.Nom_activite = reader.GetString("Nom_activite");
-                B.Cout = reader.GetInt32("Cout");
-                B.Duree = reader.GetInt32("Duree");
-                B.Nombre_vote = reader.GetInt32("Nombre_vote");
+        //        B.Id_activite = reader.GetInt32("Id_activite");
+        //        B.Nom_activite = reader.GetString("Nom_activite");
+        //        B.Cout = reader.GetInt32("Cout");
+        //        B.Duree = reader.GetInt32("Duree");
+        //        B.Nombre_vote = reader.GetInt32("Nombre_vote");
 
-            }
-            //Activite Edition = B.Find(p => p.Id == Id);
+        //    }
+        //    //Activite Edition = B.Find(p => p.Id == Id);
 
 
-            conn.Close();
-            return View(B);
-        }
+        //    conn.Close();
+        //    return View(B);
+        //}
 
-        //// POST: ActiviteesController/Edit/5
+        //POST: ActiviteesController/Edit/5
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Edit( Activite B)
+        //public ActionResult Edit(Activite B)
         //{
         //    try
         //    {
-        //    //    //todo : Add insert logic here
-        //    //    SqlConnection conn;
-        //    //    SqlCommand cmd;
+        //        //todo : Add insert logic here
+        //        SqlConnection conn;
+        //        SqlCommand cmd;
 
-        //    //    connectionString = configuration.GetConnectionString("defaultConnection");
-        //    //    conn = new SqlConnection(connectionString);
-        //    //    cmd = new SqlCommand();
-        //    //    cmd.CommandType = CommandType.StoredProcedure;
-        //    //    cmd.CommandText = "EditPostActivite";
-        //    //    cmd.Parameters.Add(new SqlParameter("@Id", B.Id_activite));
-        //    //    cmd.Parameters.Add(new SqlParameter("@Nom_activite", B.Nom_activite));
-        //    //    cmd.Parameters.Add(new SqlParameter("@Duree", B.Duree));
-        //    //    cmd.Parameters.Add(new SqlParameter("@Cout", B.Cout));
-        //    //    cmd.Parameters.Add(new SqlParameter("@Nombre_vote", B.Nombre_vote));
-        //    //    cmd.Connection = conn;
+        //        connectionString = configuration.GetConnectionString("defaultConnection");
+        //        conn = new SqlConnection(connectionString);
+        //        cmd = new SqlCommand();
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.CommandText = "EditPostActivite";
+        //        cmd.Parameters.Add(new SqlParameter("@Id", B.Id_activite));
+        //        cmd.Parameters.Add(new SqlParameter("@Nom_activite", B.Nom_activite));
+        //        cmd.Parameters.Add(new SqlParameter("@Duree", B.Duree));
+        //        cmd.Parameters.Add(new SqlParameter("@Cout", B.Cout));
+        //        cmd.Parameters.Add(new SqlParameter("@Nombre_vote", B.Nombre_vote));
+        //        cmd.Connection = conn;
 
-        //    //    var old = B.Find(p => p.Id == Edition.Id);
-        //    //    B.Remove(old);
-        //    //    B.Add(Edition);
-        //    //    return RedirectToAction(nameof(Index));
-        //    //}
-        //    //catch
-        //    //{
-        //    //    return View();
-        //    //}
+        //        var old = B.Find(p => p.Id == Edition.Id);
+        //        B.Remove(old);
+        //        B.Add(Edition);
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
         //}
 
-        // GET: ActiviteesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //// GET: ActiviteesController/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: ActiviteesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// POST: ActiviteesController/Delete/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Delete(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

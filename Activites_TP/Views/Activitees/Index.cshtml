@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Activites_TP.Models.Activite>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Activité";
 }
 
-<h1>Index</h1>
+<h1>Activités</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Nouvelle activité</a>
 </p>
 <table class="table">
     <thead>
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.Nombre_vote)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id_activite }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id_activite }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                
+                @Html.ActionLink("Details", "Details", new { id=item.Id_activite}) 
+              
             </td>
         </tr>
 }

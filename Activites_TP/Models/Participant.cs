@@ -7,10 +7,10 @@ namespace Activites_TP.Models
 {
     public class Participant
     {
-        public int Id { get; set; }
-        public string Nom_participant { get; set; }
-        public string Adresse_participant { get; set; }
-        public int Id_activite { get; set; }
+        public int id { get; set; }
+        public string nom_participant { get; set; }
+        public string adresse_participant { get; set; }
+        public int id_activite { get; set; }
 
         public Participant()
         {
@@ -19,10 +19,17 @@ namespace Activites_TP.Models
 
         public Participant(int id, string nom_participant, string adresse_participant, int id_activite)
         {
-            Id = id;
-            Nom_participant = nom_participant;
-            Adresse_participant = adresse_participant;
-            Id_activite = id_activite;
+            this.id = id;
+            this.nom_participant = nom_participant;
+            this.adresse_participant = adresse_participant;
+            this.id_activite = id_activite;
+        }
+        public Participant(string nom_participant, string adresse_participant, int id_activite)
+        {
+
+            this.nom_participant = nom_participant;
+            this.adresse_participant = adresse_participant;
+            this.id_activite = id_activite;
         }
     }
 

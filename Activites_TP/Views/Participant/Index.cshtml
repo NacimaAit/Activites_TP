@@ -4,25 +4,25 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Les participants aux activités</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Choisir une activité</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nom_participant)
+                @Html.DisplayNameFor(model => model.nom_participant)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Adresse_participant)
+                @Html.DisplayNameFor(model => model.adresse_participant)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Id_activite)
+                @Html.DisplayNameFor(model => model.id_activite)
             </th>
             <th></th>
         </tr>
@@ -31,21 +31,21 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Nom_participant)
+                @Html.DisplayFor(modelItem => item.nom_participant)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Adresse_participant)
+                @Html.DisplayFor(modelItem => item.adresse_participant)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Id_activite)
+                @Html.DisplayFor(modelItem => item.id_activite)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+              
+                @Html.ActionLink("Details", "Details", new {  id=item.id }) 
+               
             </td>
         </tr>
 }

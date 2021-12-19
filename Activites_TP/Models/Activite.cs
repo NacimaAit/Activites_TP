@@ -28,5 +28,13 @@ namespace Activites_TP.Models
             Cout = cout;
             Nombre_vote = nombre_vote;
         }
+        //public Activite( string nom_activite, int duree, int cout)
+        //{
+           
+        //    Nom_activite = nom_activite;
+        //    Duree = duree;
+        //    Cout = cout;
+            
+        //}
     }
 }
